@@ -8,10 +8,12 @@ using OpenTelemetry.Trace;
 
 Console.WriteLine("Hello, World!");
 
-var traceProvider = Sdk.CreateMeterProviderBuilder()
+var traceProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource(OpenTelemetryConstant.ActivitySourgeName)
     .ConfigureResource(configure =>
     {
-        configure.AddService(OpenTelemetryConstant.ServiceName, OpenTelemetryConstant.ServiceVersion)
+        configure
+        .AddService(OpenTelemetryConstant.ServiceName, OpenTelemetryConstant.ServiceVersion)
         .AddAttributes(new List<KeyValuePair<string, object>>()
         {
             new KeyValuePair<string ,object>("host.machineName",
@@ -19,8 +21,8 @@ var traceProvider = Sdk.CreateMeterProviderBuilder()
             new KeyValuePair<string, object>("host.environment",
             "dev")
         });
-    }).Build();
+    }).AddConsoleExporter().Build();
 
-
-
+var serviceHelper = new ServiceHelper();
+await serviceHelper.Work1();
 
