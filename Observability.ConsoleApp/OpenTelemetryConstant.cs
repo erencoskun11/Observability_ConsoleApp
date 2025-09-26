@@ -10,5 +10,6 @@ namespace Observability.ConsoleApp
     {
         internal const string ServiceName = "ConsoleApp";
         internal const string ServiceVersion = "1.0.0";
+        internal const string ActivitySourgeName = "ActivitySource.ConsoleApp";
     }
 }
