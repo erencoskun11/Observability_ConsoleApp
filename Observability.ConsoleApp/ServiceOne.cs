@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace Observability.ConsoleApp
             
             var responseContent = await result.Content.ReadAsStringAsync();
 
+            eventsTags.Add("google body length", responseContent.Length);
+            activity?.AddEvent(new("finishes the request to Google", tags: eventsTags));
             return responseContent.Length;
 
         }
