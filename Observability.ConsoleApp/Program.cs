@@ -1,12 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using Observability.ConsoleApp;
+﻿using Observability.ConsoleApp;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-Console.WriteLine("Hello, World!");
+
 
 var traceProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource(OpenTelemetryConstant.ActivitySourgeName)
