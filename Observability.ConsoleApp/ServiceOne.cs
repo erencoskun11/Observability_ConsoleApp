@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Observability.ConsoleApp
 {
     internal class ServiceOne
@@ -12,7 +11,6 @@ namespace Observability.ConsoleApp
         static HttpClient httpClient = new HttpClient();
         internal async Task<int> MakeRequestToGoogle()
         {
-
             using var activity = ActivitySourceProvider.Source.StartActivity(kind: System.Diagnostics.ActivityKind.Producer,name : "CustomMakeRequestToGoogle");
 
             var eventsTags = new ActivityTagsCollection();
@@ -28,9 +26,6 @@ namespace Observability.ConsoleApp
             eventsTags.Add("google body length", responseContent.Length);
             activity?.AddEvent(new("finishes the request to Google", tags: eventsTags));
             return responseContent.Length;
-
         }
-
-
     }
 }
